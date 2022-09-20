@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Percobaan GeoJSON
+        </title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="map" style="width:900px;height:580px"></div>
+        <script>
+            //initialize the map
+            let map=L.map('map').setView([-7.772, 110.378],15);
+            
+            //load a tile layer
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+           
+            //load GeoJSON from an external file
+            $.getJSON("https://download1336.mediafire.com/gbj8lylnyetg/eds8ln1zyqymd7y/komplek_ugm.geojson",function(data)
+            {
+                //add GeoJSON layer to the map once the file is loaded
+                L.geoJson(data).addTo(map).bindPopup("Kompleks Kampus UGM.");;
+
+            });
+        </script>
+    </body>
+</html>
